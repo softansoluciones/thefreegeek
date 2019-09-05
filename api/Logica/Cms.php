@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Datos/Cms.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Datos/Cms.php');
 
 class Cms {
 
@@ -10,7 +10,7 @@ class Cms {
         $rows = array();
 
         $result = $datos->get_Cms();
-        
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $rows[] = $row;
@@ -54,7 +54,7 @@ class Cms {
         }
         return $rows;
     }
-    
+
     public function get_CmsXSeccion($id) {
 
         $datos = new DCms();
@@ -76,17 +76,18 @@ class Cms {
 
         $info = pathinfo($file['name']);
         $ext = $info['extension']; // get the extension of the file
-        $newname = date("Y") . "_" . date("m") . "_" . date("d") . "_" . date("h_i_sa")."_". $tcontenido . "_" . $seccion . "." . $ext;
+        $newname = date("Y") . "_" . date("m") . "_" . date("d") . "_" . date("h_i_s") . "_" . $tcontenido . "_" . $seccion . "." . $ext;
 
-        $target = $_SERVER['DOCUMENT_ROOT'] . '/FF2019/media/' . $newname;
+        $target = $_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/media/' . $newname;
         move_uploaded_file($file['tmp_name'], $target);
         return $newname;
     }
 
-    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo){
-        
+    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo) {
+
         $datos = new DCms();
-        
+        $rows = array();
+
         if ($archivo == 0) {
             $file = $path;
         } else {
@@ -94,20 +95,21 @@ class Cms {
         }
 
         $result = $datos->save_Cms($titulo, $contenido, $infoadicional, $infoextra, $file, $fecha, $tcontenido, $seccion, $jerarquia, $estado);
-        
-        if ($result == TRUE) {
-            $rows = 1;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
         } else {
             $rows = 0;
         }
         return $rows;
-        
     }
-    
-    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo){
-        
+
+    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo) {
+
         $datos = new DCms();
-        
+
         if ($archivo == 0) {
             $file = $path;
         } else {
@@ -115,29 +117,27 @@ class Cms {
         }
 
         $result = $datos->update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $file, $fecha, $tcontenido, $seccion, $jerarquia, $estado);
-        
+
         if ($result == TRUE) {
             $rows = 1;
         } else {
             $rows = 0;
         }
         return $rows;
-        
     }
 
-    public function delete_Cms($id){
-        
+    public function delete_Cms($id) {
+
         $datos = new DCms();
-        
+
         $result = $datos->delete_Cms($id);
-        
-         if ($result == TRUE) {
+
+        if ($result == TRUE) {
             $rows = 1;
         } else {
             $rows = 0;
         }
         return $rows;
-        
     }
 
 }

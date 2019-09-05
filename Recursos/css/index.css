@@ -1,0 +1,561 @@
+/*------------------------------ Fonts ----------------------------*/
+@font-face {
+  font-family: badaboom;
+  src: url("Fonts/BADABB.TTF");
+}
+
+@font-face {
+  font-family: myriad;
+  src: url("Fonts/Binx.ttf");
+}
+
+/*------------------------------ Imágenes ----------------------------*/
+.img_banner {
+  height: auto;
+  width: 100%;
+}
+
+.img_ico {
+  height: auto;
+  width: 50%;
+}
+
+.img_conc {
+  height: auto;
+  width: 90%;
+  margin: 10%;
+  border: 1px solid white;
+  box-shadow: 1px 2px 1px 2px #003056;
+  transition: 1s;
+}
+
+.img_conc:hover {
+  height: auto;
+  width: 90%;
+  border: 5px solid #ACC944;
+  ;
+  box-shadow: none;
+}
+
+.img_concMov {
+  height: auto;
+  width: 80%;
+  margin: 3%;
+  border: 1px solid white;
+  box-shadow: 1px 2px 1px 2px #003056;
+  transition: 1s;
+}
+
+.img_concMov:hover {
+  height: auto;
+  width: 80%;
+  border: 2px solid #ACC944;
+  ;
+  box-shadow: none;
+}
+
+.logoform{
+  height: auto;
+  width: 15%;
+}
+
+/*------------------------------ Textos ----------------------------*/
+
+h1,
+h2,
+h3 {
+  text-align: center;
+  text-shadow: -1px 0 black, 0 0.5px black, 0.5px 0 black, 0 -1px black;
+  color: #ACC944;
+  font-family: badaboom;
+  font-size: 300%;
+}
+
+h4,
+h5,
+h6 {
+  color: #ACC944;
+  font-family: myriad;
+}
+
+/*------------------------------ Fondos y contenedores ----------------------------*/
+
+.backText {
+  display: none;
+}
+
+body {
+  height: 100vh;
+  padding: 0 !important;
+}
+
+.content-inicio {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+#navb_1 {
+  height: 100%;
+}
+
+.nav-pills {
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  border-right: #000 solid 1px;
+  overflow: auto;
+  position: relative;
+}
+
+#L_contenido {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tab-pane {
+  height: 100%;
+}
+
+.tab-content {
+  position: relative;
+  height: calc(100% - 42px);
+  overflow: auto;
+}
+
+.barra {
+  overflow-y: auto;
+  height: 80%;
+}
+
+.fondo_Home {
+  background-color: black;
+  ;
+  background-size: 100% auto;
+  background-attachment: initial;
+  margin-top: 102px;
+}
+
+.fondo_initial {
+  padding-top: 102px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  background-color: white;
+  background-size: 100% auto;
+  background-attachment: initial;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.fondo_fixed {
+  padding-top: 102px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  background-color: white;
+  background-size: 100% auto;
+  background-attachment: fixed;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.fondo_fixedMov {
+  background-color: white;
+  background-size: contain;
+  background-attachment: fixed;
+  min-height: calc(100vh-80px);
+  background-repeat: no-repeat;
+}
+
+.galeria_container {
+  width: 90%;
+  margin-top: 10%;
+}
+
+.galeria_modal {
+  height: 400px;
+  overflow: auto;
+}
+
+.testimonial {
+  background-color: none;
+}
+
+.testimonialcont {
+  width: 90%;
+  margin-top: 10%;
+}
+
+.promocont {
+  width: 80%;
+  margin: 5%;
+}
+
+.networksdiv {
+  color: #9B3F7A;
+  position: fixed;
+  display: block;
+  left: 96%;
+  margin-top: 10%;
+  z-index: 999;
+}
+
+.networksdiv a {
+  color: #9B3F7A;
+}
+
+.comentdiv {
+  color: #9B3F7A;
+  position: fixed;
+  display: block;
+  right: 94%;
+  margin-top: 10%;
+  z-index: 999;
+  padding: 1%;
+}
+
+.cardmorado {
+  border: #6b195a solid 1px;
+  color: #6b195a;
+}
+
+.cardmorado h5 {
+  color: #6b195a;
+}
+
+.bordersconf {
+  border: black solid 1px;
+  margin: 1%;
+  padding: 2%;
+}
+
+.cardverde {
+  border: #91b234 solid 1px;
+  color: #91b234;
+}
+
+.cardverde h5 {
+  color: #91b234;
+}
+
+.menu_cont {
+  margin: 1%;
+}
+
+.loginpc {
+  background-color: white;
+  height: 100%;
+  padding: 4%;
+  width: 30%;
+}
+
+.loginmov {
+  background-color: white;
+  height: auto;
+  padding: 4%;
+  border-radius: 2%;
+  box-shadow: 3px 3px lightgray;
+  width: 80%;
+}
+
+.div_filtros {
+  display none;
+  border: lightgray 1px solid;
+  width: 250px;
+  padding: 2%;
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+}
+
+.table_container_bg {
+
+  overflow-y: Auto;
+  height: calc(100% - 115px);
+  border-top: black 1px solid;
+
+}
+
+.table_container_sm {
+
+  overflow-y: Auto;
+  height: calc(100% - 155px);
+  border-top: black 1px solid;
+
+}
+
+.pases {
+
+  background-color: #003056;
+  color: white;
+  height: auto;
+  width: 20%;
+  padding: 0;
+  border-radius: 8%;
+  border: #ACC944 8px solid;
+  float: left;
+  margin: 2%;
+
+}
+
+.pasesTittle {
+
+  color: white;
+  font-weight: bold;
+}
+
+.pasesFecha {
+  color: white;
+  font-weight: bold;
+}
+
+.pasesNombre {
+
+  color: white;
+  font-weight: bold;
+
+}
+
+.pasesValor {
+  color: #003056;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.pasesval {
+
+  background-color: #ACC944;
+  width: 80%;
+  padding: 1%;
+  border-radius: 4%;
+
+}
+
+.resumenventa {
+
+  background-color: #003056;
+  color: white;
+  height: auto;
+  width: 50%;
+  padding: 1%;
+  border-radius: 8%;
+  border: #ACC944 8px solid;
+}
+
+/*------------------------------ Tablas -----------------------------*/
+
+
+
+/*------------------------------ Botones ----------------------------*/
+.pbtn-big {
+  color: white;
+  width: 80%;
+  font-size: bolder;
+  text-align: center;
+}
+
+.pbtn {
+  color: white;
+  font-size: bolder;
+  text-align: center;
+}
+
+.btn_ff {
+
+  text-align: center;
+  background-color: #ACC944;
+  color: white;
+  font-weight: bold;
+  margin: 1%;
+  width: 200px;
+
+}
+
+.btn_ch_bordered {
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: #000 1px solid;
+}
+
+.btn_ff_normal {
+  text-align: center;
+  background-color: #ACC944;
+  color: white;
+  font-weight: bold;
+}
+
+.btn_ff_normal:hover {
+  color: white;
+  opacity: 0.9;
+}
+
+.btn_ff:hover {
+
+  color: white;
+  opacity: 0.9;
+
+}
+
+.btn_v {
+
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  margin: 1%;
+  width: 100px;
+  font-size: 60%;
+  padding: 1%;
+
+}
+
+/*------------------------------ Textboxes ----------------------------*/
+.textbox {
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background-color: transparent;
+}
+
+.card-image {
+  width: 300px;
+  height: 300px;
+}
+
+/*------------------------------ NavBar ----------------------------*/
+.anav {
+  color: black;
+  transition: 0.2s;
+  font-size: 100%;
+}
+
+.anav:hover {
+  color: black;
+  /*color: black*/
+  ;
+  height: auto;
+  transform: scale(1.0);
+  background-color: transparent;
+  border-bottom: black 1px solid;
+  */
+  /*opacity: 0.8;*/
+}
+
+.navbar {
+  background-color: white;
+  height: 102px;
+}
+
+.navbar-brand {
+  margin-left: 10%;
+}
+
+.active_nav {
+  color: white;
+  background-color: black;
+}
+
+.active_nav2 {
+  background-color: transparent;
+  border: black 1px solid;
+}
+
+.optionsBar {
+
+  background-color: white;
+  color: black;
+  font-weight: bold;
+
+}
+
+/*-----------------------------Galería de imágenes---------------------*/
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+/*--------------Mapeo-----------------------*/
+.area {
+  border: #000 solid 1px;
+}
+
+/*-----------------------------Scrolls---------------------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ACC944;
+  border-radius: 20%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*----------------------------Media Query-------------------------*/
+
+
+@media only screen and (max-width: 600px) {
+  .pases {
+    background-color: #003056;
+    color: white;
+    height: auto;
+    width: 70%;
+    padding: 0;
+    border-radius: 8%;
+    border: #ACC944 8px solid;
+    float: left;
+    margin: 2%;
+  }
+
+  .resumenventa {
+
+    background-color: #003056;
+    color: white;
+    height: auto;
+    width: 90%;
+    padding: 1%;
+    border-radius: 8%;
+    border: #ACC944 8px solid;
+  }
+
+  .logoform{
+    height: auto;
+    width: 80%;
+  }
+
+}

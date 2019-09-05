@@ -46,11 +46,5 @@ class DComunes {
         return $db->executeQuery($sql);
     }
     
-    public function get_ConcursosSel() {
-        $sql = "CALL Concursos_GetSel();";
-        $db = new dbmanager();
-
-        return $db->executeQuery($sql);
-    }
 
 }

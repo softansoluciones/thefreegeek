@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Datos/Comunes.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Datos/Comunes.php');
 
 class Comunes {
     

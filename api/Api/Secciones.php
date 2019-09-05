@@ -5,8 +5,8 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('content-type: application/json; charset=utf-8');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Logica/Secciones.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Logica/Tokens.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Logica/Secciones.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Logica/Tokens.php');
 
 $GLOBALS['token'] = new Tokens();
 $GLOBALS['datos'] = new Secciones();

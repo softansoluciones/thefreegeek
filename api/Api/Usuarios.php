@@ -5,8 +5,8 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('content-type: application/json; charset=utf-8');
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Logica/Usuarios.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/FF2019/api/Logica/Tokens.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Logica/Usuarios.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/thefreegeek/api/Logica/Tokens.php');
 
 $GLOBALS['token'] = new Tokens();
 $GLOBALS['datos'] = new Usuarios();
@@ -33,9 +33,9 @@ if (count($urlservicios) > 1) {
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 $metodo = $_SERVER['REQUEST_METHOD'];
-if(isset($_SERVER['HTTP_AUTHTOKEN'])){
+if (isset($_SERVER['HTTP_AUTHTOKEN'])) {
     $GLOBALS['tokenhash'] = $_SERVER['HTTP_AUTHTOKEN'];
-}else{
+} else {
     $GLOBALS['tokenhash'] = "noauth";
 }
 
@@ -43,7 +43,7 @@ switch ($metodo) {
     case 'GET':
 
         if ($accion != null) {
-            if ($accion == "usuarios") {
+            if ($accion == "lista") {
                 GetUsuarios();
             } elseif ($accion == "id") {
                 GetUsuarioXId($datosget);
@@ -63,33 +63,33 @@ switch ($metodo) {
 
     case 'POST':
 
-    if ($accion == "guardar") {
-        SaveUsuario();
-    } elseif ($accion == "login") {
-        GetLogin();
-    }else{
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
-        echo json_encode($GLOBALS['res']);
-    }
+        if ($accion == "guardar") {
+            SaveUsuario();
+        } elseif ($accion == "login") {
+            GetLogin();
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
+            echo json_encode($GLOBALS['res']);
+        }
         break;
 
     case 'PUT':
 
-    $GLOBALS['res']->Respuesta = 0;
-    $GLOBALS['res']->Mensaje = "Método no soportado por el servicio";
-    echo json_encode($GLOBALS['res']);
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Método no soportado por el servicio";
+        echo json_encode($GLOBALS['res']);
 
         break;
 
     case 'DELETE':
-    if ($accion == "eliminar") {
-        DeleteUsuario($datosget);
-    }else{
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
-        echo json_encode($GLOBALS['res']);
-    }
+        if ($accion == "eliminar") {
+            DeleteUsuario($datosget);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
+            echo json_encode($GLOBALS['res']);
+        }
 
         break;
 
@@ -102,21 +102,21 @@ switch ($metodo) {
 
 function GetUsuarios() {
 
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->get_Usuarios();
 
-    if ($resultado != 0) {
+        if ($resultado != 0) {
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
-        echo json_encode($GLOBALS['res']);
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "No existe información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
@@ -125,21 +125,21 @@ function GetUsuarios() {
 
 function GetUsuarioXId($id) {
 
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->get_Usuario($id);
 
-    if ($resultado != 0) {
+        if ($resultado != 0) {
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
-        echo json_encode($GLOBALS['res']);
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "No existe información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
@@ -148,48 +148,47 @@ function GetUsuarioXId($id) {
 
 function GetUsuarioXDoc($documento) {
 
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->get_UsuarioXDoc($documento);
 
-    if ($resultado != 0) {
+        if ($resultado != 0) {
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
-        echo json_encode($GLOBALS['res']);
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "No existe información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
     }
-
 }
 
-function GetLogin(){
+function GetLogin() {
 
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
-        $doc = $_POST['doc'];
-    $pass = $_POST['pass'];
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
+        $doc = $_POST['usuario'];
+        $pass = $_POST['contrasenia'];
 
-    $resultado = $GLOBALS['datos']->get_UsuarioLogin($doc, $pass);
+        $resultado = $GLOBALS['datos']->get_UsuarioLogin($doc, $pass);
 
-    if ($resultado != 0) {
+        if ($resultado != 0) {
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
-        echo json_encode($GLOBALS['res']);
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "No existe información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
@@ -197,31 +196,32 @@ function GetLogin(){
 }
 
 function SaveUsuario() {
-  
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
-        $doc = $_POST['doc'];
-    $nom = $_POST['nom'];
-    $ape = $_POST['ape'];
-    $tel = $_POST['tel'];
-    $email = $_POST['email'];
-    $pass = $_POST['pass'];
-    $tipo = $_POST['tipo'];
-    $estado = $_POST['estado'];
 
-    $resultado = $GLOBALS['datos']->insert_Usuario($doc, $nom, $ape, $tel, $email, $pass, $tipo, $estado);
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
 
-    if ($resultado != 0) {
+        $doc = $_POST['documento'];
+        $nom = $_POST['nombres'];
+        $ape = $_POST['apellidos'];
+        $tel = $_POST['telefono'];
+        $email = $_POST['email'];
+        $pass = $_POST['contrasenia'];
+        $tipo = $_POST['tipo_usuario'];
+        $estado = $_POST['id_estado'];
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información registrada con éxito";
-        echo json_encode($GLOBALS['res']);
+        $resultado = $GLOBALS['datos']->insert_Usuario($doc, $nom, $ape, $tel, $email, $pass, $tipo, $estado);
+
+        if ($resultado != 0) {
+
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información registrada con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "Error al registrar información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "Error al registrar información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
@@ -230,24 +230,23 @@ function SaveUsuario() {
 
 function DeleteUsuario($id) {
 
-    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
-    if($tokenres[0]['estado'] == 1){
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->delete_Usuario($id);
 
-    if ($resultado != 0) {
+        if ($resultado != 0) {
 
-        $GLOBALS['res']->Respuesta = $resultado;
-        $GLOBALS['res']->Mensaje = "Información eliminada con éxito";
-        echo json_encode($GLOBALS['res']);
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información eliminada con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "Error al eliminar información.";
+            echo json_encode($GLOBALS['res']);
+        }
     } else {
-        $GLOBALS['res']->Respuesta = 0;
-        $GLOBALS['res']->Mensaje = "Error al eliminar información.";
-        echo json_encode($GLOBALS['res']);
-    }
-    }else{
         $GLOBALS['res']->Respuesta = 0;
         $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
         echo json_encode($GLOBALS['res']);
     }
-
 }
