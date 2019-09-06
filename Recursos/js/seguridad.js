@@ -41,42 +41,31 @@ function veificar_Token() {
 
 function Create_Token() {
 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
-      var myObj2 = JSON.parse(myObj.Respuesta);
-      document.getElementById("demo").innerHTML = myObj2;
-    }
-  };
-  xmlhttp.open("GET", "http://localhost/thefreegeek/api/Api/Tokens.php/token/1065626260", true);
-  xmlhttp.send();
-
   var user = sessionStorage.getItem('user');
 
-  $.ajax({
-    type: 'GET',
-    url: 'api/Api/Tokens.php/token/' + user,
-    dataType: 'json',
-    success: function (response) {
-      if (response.Respuesta != 0) {
-        sessionStorage.setItem('token', response.Respuesta[0].token);
-      } else {
+  var data = null;
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      var datos = JSON.parse(this.responseText)
+      if (datos.Respuesta != 0) {
+        sessionStorage.setItem('token', datos.Respuesta[0].token)
+      }else{
         if (response.Mensaje = "Usuario no autorizado.") {
-          window.location = '../FF2019/noauth.html';
+          window.location = '../thefreegeek/noauth.html';
         }
       }
-    },
-    beforeSend: function () {
-
     }
-  }).fail(function (jqXHR, textStatus, errorThrown) {
-    $("#btns").html("<input data-dismiss='modal' aria-label='Close' class='btn btn_ch_normal m-r-1em' value='Aceptar'/>");
-    $("#msg").html("<center><p>" + jqXHR + " " + textStatus + " " + errorThrown + "</center>");
-    $('#modal_msg').modal({
-      backdrop: 'static',
-      keyboard: true,
-      show: true
-    });
   });
+
+  xhr.open("GET", 'api/Api/Tokens.php/token/' + user);
+  xhr.setRequestHeader("Accept", "*/*");
+  xhr.setRequestHeader("Cache-Control", "no-cache");
+  //xhr.setRequestHeader("Postman-Token", "c633361b-7357-4c73-93f9-7ab8aae439fe,66bd0753-a19b-495e-9091-d9a95de24cf2");
+  xhr.setRequestHeader("cache-control", "no-cache");
+
+  xhr.send(data);
 }
