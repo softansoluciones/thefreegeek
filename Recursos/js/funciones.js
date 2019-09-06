@@ -113,8 +113,8 @@ function pc() {
 
     var device = navigator.userAgent
 
-    if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {} else {
-        window.location = '../FF2019/inicio.html';
+    if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) { } else {
+        window.location = '../thefreegeek/inicio.html';
     }
 
 }
@@ -124,7 +124,7 @@ function movil() {
     var device = navigator.userAgent
 
     if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {
-        window.location = '../FF2019/inicioM.html';
+        window.location = '../thefreegeek/inicioM.html';
     }
 }
 
@@ -133,9 +133,9 @@ function redireccionLogin() {
     var device = navigator.userAgent
 
     if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {
-        window.location = '../FF2019/loginM.html';
+        window.location = '../thefreegeek/loginM.html';
     } else {
-        window.location = '../FF2019/login.html';
+        window.location = '../thefreegeek/login.html';
     }
 
 }
@@ -145,27 +145,27 @@ function redireccionInicio() {
     var device = navigator.userAgent
 
     if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i)) {
-        window.location = '../FF2019/inicioM.html';
+        window.location = '../thefreegeek/inicioM.html';
     } else {
-        window.location = '../FF2019/inicio.html';
+        window.location = '../thefreegeek/inicio.html';
     }
 
 }
 
 function inputfechaDate(input) {
 
-    var valinput = $(input).val();
+    var valinput = input.value;
 
     if (valinput.length < 1) {
-        $(input).prop('type', 'date');
+        input.type = "date";
     }
 }
 
 function inputfechaText(input) {
 
-    var valinput = $(input).val();
+    var valinput = input.value;
 
     if (valinput.length < 1) {
-        $(input).prop('type', 'text');
+        input.type = "text";
     }
 }

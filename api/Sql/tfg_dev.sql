@@ -26,7 +26,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `ArchivosCms_Add` (IN `PATH_` VARCHAR(1000), IN `POSICION` INT, IN `IDENCONTENIDO` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `ArchivosCms_Add` (IN `PATH_` VARCHAR(1000), IN `POSICION` INT, IN `IDENCONTENIDO` VARCHAR(100))  BEGIN
 
 INSERT INTO cms_archivos
 (path_archivo,
@@ -39,7 +39,7 @@ IDENCONTENIDO);
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `ArchivosCms_Delete` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `ArchivosCms_Delete` (IN `ID` INT)  BEGIN
 
 DELETE FROM cms_archivos
 WHERE
@@ -47,7 +47,7 @@ cms_archivos.id_archivo = ID;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `ArchivosCms_Get` ()  BEGIN
+CREATE PROCEDURE `ArchivosCms_Get` ()  BEGIN
 
 SELECT cms_archivos.id_archivo,
     cms_archivos.path_archivo,
@@ -63,7 +63,7 @@ ORDER BY cms_archivos.id_archivo ASC;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `ArchivosCms_GetXContenido` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `ArchivosCms_GetXContenido` (IN `ID` INT)  BEGIN
 
 SELECT cms_archivos.id_archivo,
     cms_archivos.path_archivo,
@@ -80,7 +80,7 @@ ORDER BY cms_archivos.id_archivo ASC;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `ArchivosCms_GetXId` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `ArchivosCms_GetXId` (IN `ID` INT)  BEGIN
 
 SELECT cms_archivos.id_archivo,
     cms_archivos.path_archivo,
@@ -97,7 +97,7 @@ ORDER BY cms_archivos.id_archivo ASC;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_Add` (IN `TITULO` VARCHAR(200), IN `CONTENIDO` VARCHAR(5600), IN `INFOADICIONAL` VARCHAR(1000), IN `INFOEXTRA` VARCHAR(1000), IN `PATH` VARCHAR(100), IN `FECHA` DATETIME, IN `TCONTENIDO` INT, IN `SECCION` INT, IN `JERARQUIA` INT, IN `ESTADO` INT, IN `AMBIENTE` INT)  BEGIN
+CREATE PROCEDURE `Cms_Add` (IN `TITULO` VARCHAR(200), IN `CONTENIDO` VARCHAR(5600), IN `INFOADICIONAL` VARCHAR(1000), IN `INFOEXTRA` VARCHAR(1000), IN `PATH` VARCHAR(100), IN `FECHA` DATETIME, IN `TCONTENIDO` INT, IN `SECCION` INT, IN `JERARQUIA` INT, IN `ESTADO` INT, IN `AMBIENTE` INT)  BEGIN
 
 INSERT INTO cms_contenido
 (`titulo_cms`,
@@ -125,14 +125,14 @@ AMBIENTE);
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_Delete` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `Cms_Delete` (IN `ID` INT)  BEGIN
 
 DELETE FROM `cms_contenido`
 WHERE `id_cms` = ID;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_Get` ()  BEGIN
+CREATE PROCEDURE `Cms_Get` ()  BEGIN
 
 SELECT
 `cms_contenido`.`id_cms`,
@@ -161,7 +161,7 @@ inner join cms_ambientes on cms_ambientes.id_ambiente = cms_contenido.fk_ambient
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_GetXId` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `Cms_GetXId` (IN `ID` INT)  BEGIN
 
 SELECT
 `cms_contenido`.`id_cms`,
@@ -190,7 +190,7 @@ WHERE cms_contenido.id_cms = ID;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_GetXSeccion` (IN `SECCION` INT)  BEGIN
+CREATE PROCEDURE `Cms_GetXSeccion` (IN `SECCION` INT)  BEGIN
 
 SELECT
 `cms_contenido`.`id_cms`,
@@ -219,7 +219,7 @@ WHERE cms_contenido.fk_seccion = SECCION;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_GetXTContenido` (IN `TCONTENIDO` INT)  BEGIN
+CREATE PROCEDURE `Cms_GetXTContenido` (IN `TCONTENIDO` INT)  BEGIN
 
 SELECT
 `cms_contenido`.`id_cms`,
@@ -248,7 +248,7 @@ WHERE cms_contenido.fk_tipocontenido = TCONTENIDO;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Cms_Update` (IN `ID` INT, IN `TITULO` VARCHAR(100), IN `CONTENIDO` VARCHAR(1000), IN `INFOADICIONAL` VARCHAR(1000), IN `INFOEXTRA` VARCHAR(1000), IN `PATH` VARCHAR(1000), IN `FECHA` DATETIME, IN `TCONTENIDO` INT, IN `SECCION` INT, IN `JERARQUIA` INT, IN `ESTADO` INT, IN `AMBIENTE` INT)  BEGIN
+CREATE PROCEDURE `Cms_Update` (IN `ID` INT, IN `TITULO` VARCHAR(100), IN `CONTENIDO` VARCHAR(1000), IN `INFOADICIONAL` VARCHAR(1000), IN `INFOEXTRA` VARCHAR(1000), IN `PATH` VARCHAR(1000), IN `FECHA` DATETIME, IN `TCONTENIDO` INT, IN `SECCION` INT, IN `JERARQUIA` INT, IN `ESTADO` INT, IN `AMBIENTE` INT)  BEGIN
 
 UPDATE `cms_contenido`
 SET
@@ -267,7 +267,7 @@ WHERE `id_cms` = ID;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Secciones_Add` (IN `NOMBRE` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `Secciones_Add` (IN `NOMBRE` VARCHAR(100))  BEGIN
 
 INSERT INTO `cms_seccion`
 (`nom_seccion`)
@@ -276,14 +276,14 @@ VALUES
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Secciones_Delete` (IN `ID` INT)  BEGIN
+CREATE PROCEDURE `Secciones_Delete` (IN `ID` INT)  BEGIN
 
 DELETE FROM `cms_seccion`
 WHERE cms_seccion.id_seccion = ID;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Secciones_Get` ()  BEGIN
+CREATE PROCEDURE `Secciones_Get` ()  BEGIN
 
 SELECT `cms_seccion`.`id_seccion`,
     `cms_seccion`.`nom_seccion`
@@ -291,7 +291,7 @@ FROM `cms_seccion`;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Secciones_GetSel` ()  BEGIN
+CREATE PROCEDURE `Secciones_GetSel` ()  BEGIN
 
 SELECT `cms_seccion`.`id_seccion`as id,
     `cms_seccion`.`nom_seccion` as nom
@@ -299,7 +299,7 @@ FROM `cms_seccion`;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Tokens_Get` (IN `IP` VARCHAR(45), IN `SO` VARCHAR(200), IN `BROWSER` VARCHAR(200), IN `USER` VARCHAR(45), IN `FECHA` DATETIME)  BEGIN
+CREATE PROCEDURE `Tokens_Get` (IN `IP` VARCHAR(45), IN `SO` VARCHAR(200), IN `BROWSER` VARCHAR(200), IN `USER` VARCHAR(45), IN `FECHA` DATETIME)  BEGIN
 
 set @IP = IP;
 set @SO = SO;
@@ -339,7 +339,7 @@ tokens.hash_token = @HASHTXT;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Tokens_GetEstado` (IN `TOKEN` VARCHAR(5000), IN `FECHA` DATETIME)  BEGIN
+CREATE PROCEDURE `Tokens_GetEstado` (IN `TOKEN` VARCHAR(5000), IN `FECHA` DATETIME)  BEGIN
 
 declare cont int;
 declare creation datetime;
@@ -389,7 +389,7 @@ end if;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `UsuariosTipo_GetSel` ()  BEGIN
+CREATE PROCEDURE `UsuariosTipo_GetSel` ()  BEGIN
 
 select
 usuarios_tipo.idusuarios_tipo as id,
@@ -399,7 +399,7 @@ order by usuarios_tipo.nom_tipo asc;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_Add` (IN `documento` DOUBLE, IN `nombres` VARCHAR(100), IN `apellidos` VARCHAR(100), IN `tel` VARCHAR(10), IN `email` VARCHAR(500), IN `pass` VARCHAR(45), IN `tipo` INT, IN `estado` INT)  BEGIN
+CREATE PROCEDURE `Usuarios_Add` (IN `documento` DOUBLE, IN `nombres` VARCHAR(100), IN `apellidos` VARCHAR(100), IN `tel` VARCHAR(10), IN `email` VARCHAR(500), IN `pass` VARCHAR(45), IN `tipo` INT, IN `estado` INT)  BEGIN
 
 declare scont int;
 declare idus int;
@@ -441,14 +441,14 @@ end if;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_Delete` (IN `id` INT)  BEGIN
+CREATE PROCEDURE `Usuarios_Delete` (IN `id` INT)  BEGIN
 
 DELETE FROM usuarios
 WHERE usuarios.id_usuario = id;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_Get` ()  BEGIN
+CREATE PROCEDURE `Usuarios_Get` ()  BEGIN
 
 select
 usuarios.id_usuario,
@@ -468,7 +468,7 @@ order by usuarios.id_usuario asc;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_GetXDoc` (IN `doc` DOUBLE)  BEGIN
+CREATE PROCEDURE `Usuarios_GetXDoc` (IN `doc` DOUBLE)  BEGIN
 
 select
 usuarios.id_usuario,
@@ -488,7 +488,7 @@ where usuarios.doc_usuario =doc;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_GetXId` (IN `id` INT)  BEGIN
+CREATE PROCEDURE `Usuarios_GetXId` (IN `id` INT)  BEGIN
 
 select
 usuarios.id_usuario,
@@ -509,7 +509,7 @@ where usuarios.id_usuario =id;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_Login` (IN `user` VARCHAR(1000), IN `pass` VARCHAR(45))  BEGIN
+CREATE PROCEDURE `Usuarios_Login` (IN `user` VARCHAR(1000), IN `pass` VARCHAR(45))  BEGIN
 
 SET collation_connection = 'utf8_spanish_ci';
 
@@ -538,7 +538,7 @@ order by usuarios.id_usuario asc;
 
 END$$
 
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Usuarios_Update` (IN `id` INT, IN `documento` DOUBLE, IN `nombres` VARCHAR(100), IN `apellidos` VARCHAR(100), IN `tel` VARCHAR(10), IN `email` VARCHAR(500), IN `pass` VARCHAR(45), IN `tipo` INT, IN `estado` INT)  BEGIN
+CREATE PROCEDURE `Usuarios_Update` (IN `id` INT, IN `documento` DOUBLE, IN `nombres` VARCHAR(100), IN `apellidos` VARCHAR(100), IN `tel` VARCHAR(10), IN `email` VARCHAR(500), IN `pass` VARCHAR(45), IN `tipo` INT, IN `estado` INT)  BEGIN
 
 UPDATE usuarios
 SET
