@@ -50,6 +50,8 @@ switch ($metodo) {
                 GetCmsXContenido($datosget);
             } elseif ($accion == "seccion") {
                 GetCmsXSeccion($datosget);
+            } elseif ($accion == "categoria") {
+                GetCmsXCategoria($datosget);
             } else {
                 $GLOBALS['res']->Respuesta = 0;
                 $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
@@ -204,6 +206,29 @@ function GetCmsXSeccion($id) {
     }
 }
 
+function GetCmsXCategoria($id) {
+
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
+        $resultado = $GLOBALS['datos']->get_CmsXCategoria($id);
+
+        if ($resultado != 0) {
+
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
+    } else {
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
+        echo json_encode($GLOBALS['res']);
+    }
+}
+
 function SaveCms() {
 
     $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
@@ -219,13 +244,15 @@ function SaveCms() {
         $seccion = $_POST['seccion'];
         $jerarquia = $_POST['jerarquia'];
         $estado = $_POST['estado'];
+        $ambiente = $_POST['ambiente'];
+        $categoria = $_POST['categoria'];
         if (isset($_FILES['archivo'])) {
             $archivo = $_FILES['archivo'];
         } else {
             $archivo = 0;
         }
 
-        $resultado = $GLOBALS['datos']->save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo);
+        $resultado = $GLOBALS['datos']->save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria, $archivo);
 
         if ($resultado != 0) {
 
@@ -259,13 +286,15 @@ function UpdateCms() {
         $seccion = $_POST['seccion'];
         $jerarquia = $_POST['jerarquia'];
         $estado = $_POST['estado'];
+        $ambiente = $_POST['ambiente'];
+        $categoria = $_POST['categoria'];
         if (isset($_FILES['archivo'])) {
             $archivo = $_FILES['archivo'];
         } else {
             $archivo = 0;
         }
 
-        $resultado = $GLOBALS['datos']->update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo);
+        $resultado = $GLOBALS['datos']->update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria, $archivo);
 
         if ($resultado != 0) {
 

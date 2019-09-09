@@ -54,7 +54,7 @@ function Create_Token() {
       if (datos.Respuesta != 0) {
         sessionStorage.setItem('token', datos.Respuesta[0].token)
       }else{
-        if (response.Mensaje = "Usuario no autorizado.") {
+        if (response.Mensaje == "Usuario no autorizado.") {
           window.location = '../thefreegeek/noauth.html';
         }
       }
@@ -63,9 +63,6 @@ function Create_Token() {
 
   xhr.open("GET", 'api/Api/Tokens.php/token/' + user);
   xhr.setRequestHeader("Accept", "*/*");
-  xhr.setRequestHeader("Cache-Control", "no-cache");
-  //xhr.setRequestHeader("Postman-Token", "c633361b-7357-4c73-93f9-7ab8aae439fe,66bd0753-a19b-495e-9091-d9a95de24cf2");
-  xhr.setRequestHeader("cache-control", "no-cache");
-
+  xhr.setRequestHeader("Cache-Control", "no-cache");  
   xhr.send(data);
 }

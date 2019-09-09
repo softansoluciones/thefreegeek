@@ -71,6 +71,23 @@ class Cms {
         }
         return $rows;
     }
+    
+    public function get_CmsXCategoria($id) {
+
+        $datos = new DCms();
+        $rows = array();
+
+        $result = $datos->get_CmsXCategoria($id);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+        } else {
+            $rows = 0;
+        }
+        return $rows;
+    }
 
     public function save_File($file, $tcontenido, $seccion) {
 
@@ -83,7 +100,7 @@ class Cms {
         return $newname;
     }
 
-    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo) {
+    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria, $archivo) {
 
         $datos = new DCms();
         $rows = array();
@@ -94,7 +111,7 @@ class Cms {
             $file = $this->save_File($archivo, $tcontenido, $seccion);
         }
 
-        $result = $datos->save_Cms($titulo, $contenido, $infoadicional, $infoextra, $file, $fecha, $tcontenido, $seccion, $jerarquia, $estado);
+        $result = $datos->save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -106,7 +123,7 @@ class Cms {
         return $rows;
     }
 
-    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $archivo) {
+    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria, $archivo) {
 
         $datos = new DCms();
 
@@ -116,7 +133,7 @@ class Cms {
             $file = $this->save_File($archivo, $tcontenido, $seccion);
         }
 
-        $result = $datos->update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $file, $fecha, $tcontenido, $seccion, $jerarquia, $estado);
+        $result = $datos->update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $file, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria);
 
         if ($result == TRUE) {
             $rows = 1;

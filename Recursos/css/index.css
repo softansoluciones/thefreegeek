@@ -190,10 +190,10 @@
   text-align: center;
 }
 
-.btn_ff {
+.btn_tfg {
 
   text-align: center;
-  background-color: #ACC944;
+  background-color: #2d51a3;
   color: white;
   font-weight: bold;
   margin: 1%;
@@ -201,26 +201,26 @@
 
 }
 
-.btn_ff_bordered {
+.btn_tfg_bordered {
   text-align: center;
   background-color: white;
-  color: black;
-  border: #000 1px solid;
+  color: #2d51a3;
+  border: #2d51a3 1px solid;
 }
 
-.btn_ff_normal {
+.btn_tfg_normal {
   text-align: center;
-  background-color: #ACC944;
+  background-color: #2d51a3;
   color: white;
   font-weight: bold;
 }
 
-.btn_ff_normal:hover {
+.btn_tfg_normal:hover {
   color: white;
   opacity: 0.9;
 }
 
-.btn_ff:hover {
+.btn_tfg:hover {
 
   color: white;
   opacity: 0.9;
@@ -305,7 +305,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #ACC944;
+  background: #2d51a3;
   border-radius: 20%;
 }
 

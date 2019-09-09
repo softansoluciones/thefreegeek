@@ -31,16 +31,23 @@ class DCms{
 
         return $db->executeQuery($sql);
     }
-
-    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado) {
-        $sql = "CALL Cms_Add('$titulo', '$contenido', '$infoadicional', '$infoextra', '$path', '$fecha', '$tcontenido', '$seccion', '$jerarquia', '$estado');";
+    
+    public function get_CmsXCategoria($id) {
+        $sql = "CALL Cms_GetXCategoria('$id');";
         $db = new dbmanager( );
 
         return $db->executeQuery($sql);
     }
 
-    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado) {
-        $sql = "CALL Cms_Update('$id', $titulo', '$contenido', '$infoadicional', '$infoextra', '$path', '$fecha', '$tcontenido', '$seccion', '$jerarquia', '$estado');";
+    public function save_Cms($titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria) {
+        $sql = "CALL Cms_Add('$titulo', '$contenido', '$infoadicional', '$infoextra', '$path', '$fecha', '$tcontenido', '$seccion', '$jerarquia', '$estado', '$ambiente', '$categoria');";
+        $db = new dbmanager( );
+
+        return $db->executeQuery($sql);
+    }
+
+    public function update_Cms($id, $titulo, $contenido, $infoadicional, $infoextra, $path, $fecha, $tcontenido, $seccion, $jerarquia, $estado, $ambiente, $categoria) {
+        $sql = "CALL Cms_Update('$id', $titulo', '$contenido', '$infoadicional', '$infoextra', '$path', '$fecha', '$tcontenido', '$seccion', '$jerarquia', '$estado', '$ambiente', '$categoria');";
         $db = new dbmanager( );
 
         return $db->executeQuery($sql);
