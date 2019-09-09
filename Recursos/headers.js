@@ -10,7 +10,7 @@ document.write('<meta http-equiv="Pragma" content="no-cache" />');
 document.write('<meta http-equiv="Expires" content="0" />');
 document.write('<meta http-equiv="Last-Modified" content="0" />');
 document.write('<meta name="theme-color" content="#003056" />');
-document.write('<link rel="icon" href="media/logo4.png" type="logo" />');
+document.write('<link rel="icon" href="media/Favicon/logo (2).jpg" type="logo" />');
 document.write('<meta name="description" content="Friki Festival Valleduoar es un espacio, en donde los fanáticos de la cultura friki y la industria del entretenimiento son participes de diferentes actividades tales como el cosplay, videojuegos, arte, k-pop, rubik, exposiciones y todas las formas de arte popular relacionadas." />');
 document.write('<meta name="viewport" content="width=device-width, initial-scale=1">');
 document.write('<script>if (typeof module === "object") {window.module = module; module = undefined;}</script>');

@@ -4,7 +4,7 @@ var GlobalUserTipo = parseInt(sessionStorage.getItem("tipo_user"));
 var GlobalUserNom = sessionStorage.getItem("nom_user");
 
 function user_data() {
-    document.getElementById("nom_us").innerHTML=sessionStorage.getItem("nom_user")
+    document.getElementById("nom_us").innerHTML = sessionStorage.getItem("nom_user")
 }
 
 function get_modulo() {
@@ -44,11 +44,7 @@ function get_modulo() {
 
 function Vista_Contenidos() {
     user_data();
-    //load_contenido('contenidoLista')
-    //var activo1 = document.getElementsByClassName('active_nav');
-	//Array.prototype.forEach.call(activo1, function(item) {
-    //    item.classList.add("is-invalid");
-    //    })
+    load_contenido('contenidoLista')
     sessionStorage.setItem("modulo", 1);
     removeActive();
     hideSubmenu();
@@ -139,14 +135,11 @@ function ActualizarPagina() {
 
 function removeActive() {
 
-    $(".active_nav").each(function () {
-        $(this).removeClass("active_nav");
-    });
-
-    $(".active_nav2").each(function () {
-        $(this).removeClass("active_nav2");
-    });
-
+    var activo1 = document.getElementsByClassName('anav')
+    for (var i = 0; i < activo1.length; i++) {
+        activo1[i].classList.remove("active_nav");
+        activo1[i].classList.remove("active_nav2");
+    }
 }
 
 function hideSubmenu() {
@@ -175,20 +168,20 @@ function menuPan() {
 
 async function load_panel() {
     let url = 'Recursos/navbarPanel.html'
-  
-    document.getElementById("navb_1").innerHTML= await (await fetch(url)).text();
+
+    document.getElementById("navb_1").innerHTML = await (await fetch(url)).text();
     get_modulo();
 }
 
-async function load_contenido(contenido) {
-    let url = contenido+'.html'
-  
-    document.getElementById("L_contenido").innerHTML= await (await fetch(url)).text();
+function load_contenido(contenido) {
+    let url = contenido + '.html'
+
+    document.getElementById("L_contenido").innerHTML = fetch(url).text();
     get_modulo();
 }
 
 
-  window.onload = function() {
+window.onload = function () {
     //verificacionI();  
     load_panel()
-  };
+};

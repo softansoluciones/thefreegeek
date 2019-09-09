@@ -14,8 +14,35 @@ and open the template in the editor.
     <script type="text/javascript">$(document).ready(function () { sessionStorage.removeItem('token'); })</script>
 </head>
 
-<body class="container" style="background-size: 100% auto; background-image: url('media/seccion4.jpg');">
-    
-</body>
+<body class="" style="background-size: 100% auto; background-color: #2d51a3;">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+        <div id="navb_1" style="height: 100px">
+            <script>
+                $("#navb_1").load("Recursos/navbar.html");
+            </script>
+        </div>
+        <div class="container" style="height: 100vh; padding: 2%; background-color: white;">
+           
+        </div>
+        <footer style="background-color: #2d51a3">
+            <br>
+            <center>
+                <a href="#">
+                    <h4 style="color: white">Contacto</h4>
+                </a>
+                <hr style="width: 20%; border:  black 2px solid;">
+                <div class="col">
+                    <a href="https://es-la.facebook.com/frikifestival" target="_blank" style="margin: 5px;"><i
+                            class="fab fa-facebook-square fa-2x"></i></a>
+                    <a href="https://www.instagram.com/frikifestival" target="_blank" style="margin: 5px;"><i
+                            class="fab fa-instagram fa-2x"></i></a>
+                </div>
+                <hr style="width: 50%; border:  black 2px solid;">
+                <t style="color: white">Copyright &copy;Softan Soluciones 2019 Valledupar-Colombia, Bogotá D.C.-Colombia</t>
+            </center>
+        </footer>
+    </body>
 
 </html>
