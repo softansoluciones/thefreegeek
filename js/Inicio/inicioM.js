@@ -65,9 +65,8 @@ function Cargar_Banners() {
             } else {
                 if (datos.Mensaje == "Usuario no autorizado.") {
                     window.location = '../thefreegeek/noauth.html';
-                }else {
+                } else {
                     var html = document.getElementById('bann_contenido');
-                    html.innerHTML ='';
                     html.innerHTML = '<center>'+datos.Mensaje+'</center>';
                 }
                 Cargar_Noticias();
@@ -107,11 +106,11 @@ function Cargar_Noticias() {
                 var contid = 0;
                 datos.Respuesta.forEach(function (item) {
                     contid++;
-                    html.innerHTML += '<div class="row"' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
+                    html.innerHTML += '<div class=""' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
                     <div class="col" style="">\n\
                     <img src="media/Noticias/' + item.path_cms + '" class="d-block w-100" alt="...">\n\
                     </div>\n\
-                    <div class="col-9" style="">\n\
+                    <div class="col" style="">\n\
                     <br><br>\n\
                     <a href="' + item.infoextra_cms + '" style="color: black;"><h3>' + item.titulo_cms + '</h3></a>\n\
                     <hr>\n\
@@ -125,6 +124,7 @@ function Cargar_Noticias() {
                 for (var i = 1; i <= pag; i++) {
                     htmlpag.innerHTML += '<li class="page-item"><a class="page-link" href="javascript: Cargar_NoticiasXPag(' + i + ')">' + i + '</a></li>';
                 }
+                Cargar_Categorias();
             } else {
                 if (datos.Mensaje == "Usuario no autorizado.") {
                     window.location = '../thefreegeek/noauth.html';
@@ -137,6 +137,42 @@ function Cargar_Noticias() {
     });
 
     xhr.open("GET", 'api/Api/Cms.php/noticias');
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader("Cache-Control", "no-cache");
+    xhr.setRequestHeader("authtoken", token);
+    xhr.setRequestHeader("cache-control", "no-cache");
+
+    xhr.send(data);
+}
+
+function Cargar_Categorias() {
+
+    var token = sessionStorage.getItem('token');
+    var data = null;
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            var datos = JSON.parse(this.responseText)
+            if (datos.Respuesta != 0) {
+                var panel = document.getElementById('menupan_items');
+                panel.innerHTML = '';
+                datos.Respuesta.forEach(function (item) {
+                    panel.innerHTML += '<a class="anav nav-item nav-link" name="menup" href="javascript: Cargar_NoticiasXCategoria(' + item.id + '), menuPan()">' + item.nom + '</a>';
+                })
+            } else {
+                if (datos.Mensaje == "Usuario no autorizado.") {
+                    window.location = '../thefreegeek/noauth.html';
+                }else {
+                    var html = document.getElementById('menupan_items');
+                    html.innerHTML = '<center>'+datos.Mensaje+'</center>';
+                }
+            }
+        }
+    });
+
+    xhr.open("GET", 'api/Api/Comunes.php/categorias');
     xhr.setRequestHeader("Accept", "*/*");
     xhr.setRequestHeader("Cache-Control", "no-cache");
     xhr.setRequestHeader("authtoken", token);
@@ -168,11 +204,11 @@ function Cargar_NoticiasXPag(pag) {
                 var contid = 0;
                 datos.Respuesta.forEach(function (item) {
                     contid++;
-                    html.innerHTML += '<div class="row"' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
+                    html.innerHTML += '<div class=""' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
                     <div class="col" style="">\n\
                     <img src="media/Noticias/' + item.path_cms + '" class="d-block w-100" alt="...">\n\
                     </div>\n\
-                    <div class="col-9" style="">\n\
+                    <div class="col" style="">\n\
                     <br><br>\n\
                     <a href="' + item.infoextra_cms + '" style="color: black;"><h3>' + item.titulo_cms + '</h3></a>\n\
                     <hr>\n\
@@ -228,11 +264,11 @@ function Cargar_NoticiasXCategoria(cat) {
                 var contid = 0;
                 datos.Respuesta.forEach(function (item) {
                     contid++;
-                    html.innerHTML += '<div class="row"' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
+                    html.innerHTML += '<div class=""' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
                     <div class="col" style="">\n\
                     <img src="media/Noticias/' + item.path_cms + '" class="d-block w-100" alt="...">\n\
                     </div>\n\
-                    <div class="col-9" style="">\n\
+                    <div class="col" style="">\n\
                     <br><br>\n\
                     <a href="' + item.infoextra_cms + '" style="color: black;"><h3>' + item.titulo_cms + '</h3></a>\n\
                     <hr>\n\
@@ -289,11 +325,11 @@ function Cargar_NoticiasXCatXPag(cat, pag) {
                 var contid = 0;
                 datos.Respuesta.forEach(function (item) {
                     contid++;
-                    html.innerHTML += '<div class="row"' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
+                    html.innerHTML += '<div class=""' + (contid % 2 == 0 ? 'style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;"' : 'style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;"') + '>\n\
                     <div class="col" style="">\n\
                     <img src="media/Noticias/' + item.path_cms + '" class="d-block w-100" alt="...">\n\
                     </div>\n\
-                    <div class="col-9" style="">\n\
+                    <div class="col" style="">\n\
                     <br><br>\n\
                     <a href="' + item.infoextra_cms + '" style="color: black;"><h3>' + item.titulo_cms + '</h3></a>\n\
                     <hr>\n\

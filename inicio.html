@@ -11,12 +11,11 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Recursos/headers.js" type="text/javascript"></script>
+    <script type="text/javascript">window.onload = movil()</script>
     <script src="js/Inicio/inicio.js" type="text/javascript"></script>
-    <script type="text/javascript">$(document).ready(function () { sessionStorage.removeItem('token'); })</script>
 </head>
 
 <body class="" style="background-size: 100% auto; background-color: #2d51a3;">
-
     <div id="navb_1" style="height: 100px">
         <script>
             $("#navb_1").load("Recursos/navbar.html");
@@ -39,40 +38,11 @@ and open the template in the editor.
         </div>
         <br>
         <div class="container" id="ini_noticias_det" style="">
-            <div class="row" style="border-top: #2d51a3 2px solid; border-right: #2d51a3 2px solid; margin: 2%;">
-                <div class="col" style="">
-                    <img src="media/Noticias/" class="d-block w-100" alt="...">
-                </div>
-                <div class="col-9" style="">
-                    <br>
-                    <br>
-                    <a href="#" style="color: black;">
-                        <h3>Titulo</h3>
-                    </a>
-                    <hr>
-                    <p style="font-size: 130%;"></p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="row" style="border-top: #2d51a3 2px solid; border-left: #2d51a3 2px solid; margin: 2%;">
-                <div class="col" style="">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/71ivrWiYkLL._SL1500_.jpg"
-                        class="d-block w-100" alt="...">
-                </div>
-                <div class="col-9" style="">
-                    <br>
-                    <br>
-                    <a href="#" style="color: black;">
-                        <h3>Titulo</h3>
-                    </a>
-                    <hr>
-                    <p style="font-size: 130%;">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This
-                        content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul id="ini_noticias_pag" class="pagination justify-content-center">
+            </ul>
+        </nav>
     </div>
     <br>
     <footer style="background-color: #2d51a3">

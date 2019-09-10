@@ -130,4 +130,22 @@ class Comunes {
         return $rows;
     }
     
+     public function get_CategoriasSel() {
+
+
+        $datos = new DComunes();
+        $rows = array();
+
+        $result = $datos->get_CategoriasSel();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+        } else {
+            $rows = 0;
+        }
+        return $rows;
+    }
+    
 }

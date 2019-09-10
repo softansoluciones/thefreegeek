@@ -46,5 +46,11 @@ class DComunes {
         return $db->executeQuery($sql);
     }
     
+     public function get_CategoriasSel() {
+        $sql = "CALL Categorias_Get();";
+        $db = new dbmanager();
+
+        return $db->executeQuery($sql);
+    }
 
 }

@@ -65,7 +65,8 @@ class Cms {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);;
+                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);
+                ;
                 $row['pagina'] = (is_float($cont / 10) == true) ? ceil($cont / 10) : ($cont / 10);
                 if ($row['pagina'] == 1) {
                     $rows[] = $row;
@@ -77,7 +78,7 @@ class Cms {
         }
         return $rows;
     }
-    
+
     public function get_CmsXPagina($id, $pag) {
 
         $datos = new DCms();
@@ -88,7 +89,8 @@ class Cms {
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);;
+                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);
+                ;
                 $row['pagina'] = (is_float($cont / 10) == true) ? ceil($cont / 10) : ($cont / 10);
                 if ($row['pagina'] == $pag) {
                     $rows[] = $row;
@@ -122,12 +124,41 @@ class Cms {
 
         $datos = new DCms();
         $rows = array();
+        $cont = 1;
 
         $result = $datos->get_CmsXCategoria($id);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
+                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);
+                $row['pagina'] = (is_float($cont / 10) == true) ? ceil($cont / 10) : ($cont / 10);
+                if ($row['pagina'] == 1) {
+                    $rows[] = $row;
+                }
+                $cont++;
+            }
+        } else {
+            $rows = 0;
+        }
+        return $rows;
+    }
+    
+    public function get_CmsXCategoriaXPag($id, $pag) {
+
+        $datos = new DCms();
+        $rows = array();
+        $cont = 1;
+
+        $result = $datos->get_CmsXCategoria($id);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $row['paginas'] = (is_float($result->num_rows / 10) == true) ? ceil($result->num_rows / 10) : ($result->num_rows / 10);
+                $row['pagina'] = (is_float($cont / 10) == true) ? ceil($cont / 10) : ($cont / 10);
+                if ($row['pagina'] == $pag) {
+                    $rows[] = $row;
+                }
+                $cont++;
             }
         } else {
             $rows = 0;

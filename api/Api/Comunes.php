@@ -50,8 +50,8 @@ switch ($metodo) {
                 GetTUsuarios();
             }elseif ($accion == "tdocumento") {
                 GetTDocumento();
-            }elseif ($accion == "concursos") {
-                GetConcursos();
+            }elseif ($accion == "categorias") {
+                GetCategorias();
             } else {
                 $GLOBALS['res']->Respuesta = 0;
                 $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
@@ -247,6 +247,30 @@ function GetConcursos() {
     $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
     if($tokenres[0]['estado'] == 1){
         $resultado = $GLOBALS['datos']->get_ConcursosSel();
+
+    if ($resultado != 0) {
+
+        $GLOBALS['res']->Respuesta = $resultado;
+        $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+        echo json_encode($GLOBALS['res']);
+    } else {
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "No existe información.";
+        echo json_encode($GLOBALS['res']);
+    }
+    }else{
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
+        echo json_encode($GLOBALS['res']);
+    }
+
+}
+
+function GetCategorias() {
+
+    $tokenres =  $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if($tokenres[0]['estado'] == 1){
+        $resultado = $GLOBALS['datos']->get_CategoriasSel();
 
     if ($resultado != 0) {
 

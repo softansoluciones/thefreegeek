@@ -52,6 +52,8 @@ switch ($metodo) {
                 GetCmsXSeccion($datosget);
             } elseif ($accion == "categoria") {
                 GetCmsXCategoria($datosget);
+            }elseif ($accion == "categoriapag") {
+                GetCmsXCategoriaPag($datosget, $datosget2);
             }elseif ($accion == "pagina") {
                 GetCmsXPagina($datosget, $datosget2);
             }elseif ($accion == "noticias") {
@@ -215,6 +217,29 @@ function GetCmsXCategoria($id) {
     $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
     if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->get_CmsXCategoria($id);
+
+        if ($resultado != 0) {
+
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
+    } else {
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
+        echo json_encode($GLOBALS['res']);
+    }
+}
+
+function GetCmsXCategoriaPag($id, $pag) {
+
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
+        $resultado = $GLOBALS['datos']->get_CmsXCategoriaXPag($id, $pag);
 
         if ($resultado != 0) {
 

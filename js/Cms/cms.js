@@ -43,13 +43,26 @@ function get_modulo() {
 }
 
 function Vista_Contenidos() {
+
+    $("#L_contenido").load("contenidos.html");
     user_data();
-    load_contenido('contenidoLista')
     sessionStorage.setItem("modulo", 1);
     removeActive();
     hideSubmenu();
     $('#mod_1').addClass('active_nav');
     $('#mod_1_1').addClass('active_nav');
+    $('#subMod_1').show('fast');
+}
+
+function Vista_ContenidosReg() {
+    
+    $("#L_contenido").load("contenidosReg.html");
+    user_data();
+    sessionStorage.setItem("modulo", 1.1);
+    removeActive();
+    hideSubmenu();
+    $('#mod_1').addClass('active_nav');
+    $('#mod_1_2').addClass('active_nav');
     $('#subMod_1').show('fast');
 }
 
@@ -143,45 +156,13 @@ function removeActive() {
 }
 
 function hideSubmenu() {
+    
     $("div[name ='sub_menu']").each(function () {
         $(this).hide("fast");
     });
 
 }
 
-function menuPan() {
-
-    //alert($("#menupan").position().left);
-    //alert($(window).width());
-
-    var panpos = $(window).width();
-    if ($("#menupan").position().left >= panpos) {
-        $("#menupan").animate({ left: '0%' });
-        $("body").addClass('overbody');
-    } else {
-        $("#menupan").animate({ left: '100%' });
-        $("body").removeClass('overbody');
-
-    }
-
-}
-
-async function load_panel() {
-    let url = 'Recursos/navbarPanel.html'
-
-    document.getElementById("navb_1").innerHTML = await (await fetch(url)).text();
-    get_modulo();
-}
-
-function load_contenido(contenido) {
-    let url = contenido + '.html'
-
-    document.getElementById("L_contenido").innerHTML = fetch(url).text();
-    get_modulo();
-}
-
-
 window.onload = function () {
     //verificacionI();  
-    load_panel()
 };
