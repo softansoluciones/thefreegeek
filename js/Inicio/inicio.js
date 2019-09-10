@@ -117,7 +117,7 @@ function Cargar_Noticias() {
         }
     });
 
-    xhr.open("GET", 'api/Api/Cms.php/contenido/1');
+    xhr.open("GET", 'api/Api/Cms.php/noticias');
     xhr.setRequestHeader("Accept", "*/*");
     xhr.setRequestHeader("Cache-Control", "no-cache");
     xhr.setRequestHeader("authtoken", token);

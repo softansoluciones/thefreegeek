@@ -52,6 +52,10 @@ switch ($metodo) {
                 GetCmsXSeccion($datosget);
             } elseif ($accion == "categoria") {
                 GetCmsXCategoria($datosget);
+            }elseif ($accion == "pagina") {
+                GetCmsXPagina($datosget, $datosget2);
+            }elseif ($accion == "noticias") {
+                GetCmsXNoticias();
             } else {
                 $GLOBALS['res']->Respuesta = 0;
                 $GLOBALS['res']->Mensaje = "Acción no existe o no está soportada por el servicio";
@@ -211,6 +215,52 @@ function GetCmsXCategoria($id) {
     $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
     if ($tokenres[0]['estado'] == 1) {
         $resultado = $GLOBALS['datos']->get_CmsXCategoria($id);
+
+        if ($resultado != 0) {
+
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
+    } else {
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
+        echo json_encode($GLOBALS['res']);
+    }
+}
+
+function GetCmsXPagina($id, $pag) {
+
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
+        $resultado = $GLOBALS['datos']->get_CmsXPagina($id, $pag);
+
+        if ($resultado != 0) {
+
+            $GLOBALS['res']->Respuesta = $resultado;
+            $GLOBALS['res']->Mensaje = "Información obtenida con éxito";
+            echo json_encode($GLOBALS['res']);
+        } else {
+            $GLOBALS['res']->Respuesta = 0;
+            $GLOBALS['res']->Mensaje = "No existe información.";
+            echo json_encode($GLOBALS['res']);
+        }
+    } else {
+        $GLOBALS['res']->Respuesta = 0;
+        $GLOBALS['res']->Mensaje = "Usuario no autorizado.";
+        echo json_encode($GLOBALS['res']);
+    }
+}
+
+function GetCmsXNoticias() {
+
+    $tokenres = $GLOBALS['token']->get_TokenEstado($GLOBALS['tokenhash']);
+    if ($tokenres[0]['estado'] == 1) {
+        $resultado = $GLOBALS['datos']->get_CmsXNoticias();
 
         if ($resultado != 0) {
 
